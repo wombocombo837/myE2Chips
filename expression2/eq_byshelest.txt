@@ -1,0 +1,57 @@
+@name EQ_ByShelest
+@persist [E O]:entity N A Light:array
+
+interval(10)
+
+if(first()){
+    # noDuplications()
+    
+    E = entity()
+    O = owner()
+    
+    A = 10
+}
+
+timer("t", 400)
+
+if(clk("t") & holoCanCreate() & N < A){    
+    N++
+    
+    holoCreate(N, E:toWorld(vec(10 * N, 0, 0)), vec(0.5, 0.5, 0.3), E:toWorld(ang(90, 90, 0)), vec(250), "models/segment.mdl")
+    holoDisableShading(N, 1)
+    holoParent(N, E)
+    holoAlpha(N, 100)
+
+    holoCreate(N + A, E:toWorld(vec(10 * N, 0, -0.05)), vec(0.7, 0.7, 0.5), E:toWorld(ang(90, 90, 0)), vec(50), "models/segment.mdl")
+    holoParent(N + A, E)
+    holoMaterial(N + A, "models/shiny")
+        
+    holoCreate(N + A * 2, E:toWorld(vec(10 * N, 0, 0)), vec(60, 0.55, 0.35), E:toWorld(ang(90, 90, 0)), vec(0), "models/segment.mdl")
+    holoDisableShading(N + A * 2, 1)
+    holoParent(N + A * 2, E)
+    holoAlpha(N + A * 2, 100)
+    
+    holoCreate(N + A * 3, E:toWorld(vec(10 * N, 0, 37)), vec(0.7, 0.7, 0.5), E:toWorld(ang(90, 90, 0)), vec(50), "models/segment.mdl")
+    holoParent(N + A * 3, E)
+    holoMaterial(N + A * 3, "models/shiny")
+    
+    # Light[N, entity] = holoEntity(N):setdLight(holoEntity(N):pos(), vec(255, 255, 255), 0, 300, 0)
+    
+    print("Load: " + N * (100 / A) + "%")    
+}
+
+if(changed(N == A) & N == A){    
+    soundURLload(1, "http://online.radiorecord.ru:8102/dub_128", 1, 0, O)
+    print("Playing")
+}
+
+if(N == A){    
+    FFT = E:soundFFT(1)
+    
+    for(I = 1, A){
+        holoScale(I, vec(FFT:number(I) + 2, 0.5, 0.3))
+        holoColor(I, vec(FFT:number(I) * 5, 255 - FFT:number(I) * 5, 0))
+        
+        #Light[I, entity]:setColor(vec(0,255-FFT:number(( I ))*5,255-FFT:number(( I ))*5))   
+    }
+}

@@ -1,0 +1,78 @@
+@name LaserV2ByShelest_
+@persist [E O]:entity Const ConstR ANG Radius St
+
+interval(100)
+
+if(first()){    
+    noDuplications()
+    
+    O = owner()
+    E = entity()
+
+    Const = 6
+    Radius = 200
+
+    holoCreate(0, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "hq_sphere")
+    
+    for(I = 1, Const){
+        holoCreate(I, holoEntity(0):toWorld(vec( sin(360 / Const * I) * ConstR, cos(360 / Const * I)*ConstR, 0)), vec(1), holoEntity(0):toWorld(ang(0)), vec(255), "hq_sphere")
+        holoParent(I, 0)    
+    }
+
+    for(I = 1, Const){
+        if(I != 1){
+            holoEntity(I):drawBeam("trails/laser",holoEntity(I):pos(),holoEntity(I - 1), vec(225), 255, 40, 0, 0)   
+        }
+        else{
+            holoEntity(Const):drawBeam("trails/laser", holoEntity(Const):pos(), holoEntity(1), vec(225), 255, 40, 0, 0)
+        }
+    
+    }
+    
+    holoCreate(Const + 1, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "hq_sphere")
+    holoEntity(Const + 1):drawBeam("trails/laser", holoEntity(Const + 1):pos(), holoEntity(0), vec(225), 255, 40, 0, 0)
+}
+
+function void status(Status:number){
+    if(Status){
+        if(ConstR < Radius){
+            ConstR = ConstR + 10
+            
+            for(I = 1, Const){
+                holoPos(I, holoEntity(0):toWorld(vec(sin(360 / Const * I) * ConstR, cos(360 / Const * I) * ConstR, 0)))
+            }
+        }   
+    }
+    else{
+        if(ConstR > 0){
+            ConstR = ConstR - 10
+            
+            for(I = 1, Const){
+                holoPos(I, holoEntity(0):toWorld(vec(sin(360 / Const * I) * ConstR, cos(360 / Const * I) * ConstR, 0)))
+            }   
+        }
+    }        
+}
+
+holoPos(Const + 1, O:aimPos())
+holoPos(0, O:toWorld(vec(200, 0, 200)))
+holoAng(0, (holoEntity(Const + 1):pos() - holoEntity(0):pos()):toAngle() + ang(90, 0, 0))
+
+if(O:weapon():type() == "weapon_crowbar"){    
+    status(1)
+
+    if(O:keyAttack1() & !O:pos():distance(holoEntity(Const+1):pos()) <40){
+        for(I = 1, Const){
+            holoEntity(I):shootTo(holoEntity(I):pos(),holoEntity(Const + 1):pos() - holoEntity(I):pos(), 0, 500, 1000, "AR2Tracer")   
+        }
+    }
+}
+else{
+    status(0)    
+}
+
+
+
+
+
+

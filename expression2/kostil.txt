@@ -1,0 +1,35 @@
+@name KOSTIL
+@persist [E O Base]:entity Just A
+
+interval(10)
+
+if(first()){
+    noDuplications()
+    
+    E = entity()
+    O = owner()
+    
+    Base = holoCreate(0, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "")
+    holoAlpha(0, 0)
+
+    meshCreate(1, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/Kostil_2.obj")
+    meshSetMaterial(1, "phoenix_storms/white_brushes")
+    meshSetScale(1, vec(1.5))
+    meshSetPos(1, Base:toWorld(vec(-1, 0, 0)))
+    meshSetAng(1, Base:toWorld(ang(90, 0, 180)))
+    meshParent(1, Base)
+
+    meshCreate(2, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/Kostil_1.obj")
+    meshSetMaterial(2, "models/props_canal/canal_bridge_railing_01a")
+    meshSetScale(2, vec(1.5))
+    meshSetPos(2, Base:toWorld(vec(-1, 0, 0)))
+    meshSetAng(2, Base:toWorld(ang(90, 0, 180)))
+    meshParent(2, Base)
+    
+
+    holoPos(0, O:attachmentPos("chest"))
+    holoAng(0, O:attachmentAng("chest"))
+    holoPos(0, holoEntity(0):toWorld(vec(-6.5, 0, -10)))
+    holoAng(0, holoEntity(0):toWorld(ang(0, 0, 35)))
+    holoParentAttachment(0, O, "chest")
+}

@@ -1,0 +1,349 @@
+@name Park
+@model models/props_lab/reciever01b.mdl
+
+if(first()){
+    E = entity()
+    A = 1
+    
+    holoCreate(1)
+    holoPos(1, E:toWorld(vec(0, 0, 1000 - A)))
+    holoModel(1, "models/hunter/plates/plate32x32.mdl")
+    holoMaterial(1, "phoenix_storms/ps_grass")
+    znbHoloSolid(1)
+
+    holoCreate(2)
+    holoPos(2, E:toWorld(vec(0, 0, 2400 - A)))
+    holoModel(2, "models/hunter/blocks/cube8x8x8.mdl")
+    holoScale(2, vec(-4, -4, -4))
+    holoMaterial(2, "phoenix_storms/mat/mat_phx_metallic")
+    holoDisableShading(2, 1)
+    holoColor(2, vec(150, 255, 255))
+
+    holoCreate(3)
+    holoPos(3, E:toWorld(vec(0, 0, 1070 - A)))
+    holoModel(3, "models/hunter/blocks/cube8x8x8.mdl")
+    holoScale(3, vec(4.01, 4.01, 4.01))
+    holoMaterial(3, "hlmv/floor")
+
+    holoCreate(4)
+    holoPos(4, E:toWorld(vec(0, 0, 1002 - A)))
+    holoModel(4, "models/hunter/plates/plate3x32.mdl")
+    holoMaterial(4, "phoenix_storms/pack2/train_floor")
+    znbHoloSolid(4)
+
+    holoCreate(5)
+    holoPos(5, E:toWorld(vec(-737, 0, 1001 - A)))
+    holoModel(5, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(5)
+
+    holoCreate(6)
+    holoPos(6, E:toWorld(vec(-737, 250, 1001 - A)))
+    holoModel(6, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(6)
+
+    holoCreate(7)
+    holoPos(7, E:toWorld(vec(-737, -250, 1001 - A)))
+    holoModel(7, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(7)
+
+    holoCreate(8)
+    holoPos(8, E:toWorld(vec(-737, -500, 1001 - A)))
+    holoModel(8, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(8)
+
+    holoCreate(9)
+    holoPos(9, E:toWorld(vec(-737, 500, 1001 - A)))
+    holoModel(9, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(9)
+
+    holoCreate(10)
+    holoPos(10, E:toWorld(vec(-737, 620, 1001 - A)))
+    holoModel(10, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(10)
+
+    holoCreate(11)
+    holoPos(11, E:toWorld(vec(737, -620, 1001 - A)))
+    holoModel(11, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(11)
+
+    holoCreate(12)
+    holoPos(12, E:toWorld(vec(737, 0, 1001 - A)))
+    holoModel(12, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(12)
+
+    holoCreate(13)
+    holoPos(13, E:toWorld(vec(737, 250, 1001 - A)))
+    holoModel(13, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(13)
+
+    holoCreate(14)
+    holoPos(14, E:toWorld(vec(737, -250, 1001 - A)))
+    holoModel(14, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(14)
+
+    holoCreate(15)
+    holoPos(15, E:toWorld(vec(737, -500, 1001 - A)))
+    holoModel(15, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(15)
+
+    holoCreate(16)
+    holoPos(16, E:toWorld(vec(737, 500, 1001 - A)))
+    holoModel(16, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(16)
+
+    holoCreate(17)
+    holoPos(17, E:toWorld(vec(737, 620, 1001 - A)))
+    holoModel(17, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(17)
+
+    holoCreate(18)
+    holoPos(18, E:toWorld(vec(737, -620, 1001 - A)))
+    holoModel(18, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(18)
+
+    holoCreate(19)
+    holoPos(19, E:toWorld(vec(-737, -620, 1001 - A)))
+    holoModel(19, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    znbHoloSolid(19)
+
+    holoCreate(20)
+    holoPos(20, E:toWorld(vec(-620, -737, 1001 - A)))
+    holoModel(20, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    holoAng(20, ang(0, 90, 0))
+    znbHoloSolid(20)
+
+    holoCreate(21)
+    holoPos(21, E:toWorld(vec(620, -737, 1001 - A)))
+    holoModel(21, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    holoAng(21, ang(0, 90, 0))
+    znbHoloSolid(21)
+
+    holoCreate(22)
+    holoPos(22, E:toWorld(vec(-620 + 250, -737, 1001 - A)))
+    holoModel(22, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    holoAng(22, ang(0, 90, 0))
+    znbHoloSolid(22)
+
+    holoCreate(23)
+    holoPos(23, E:toWorld(vec(620 - 250, -737, 1001 - A)))
+    holoModel(23, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    holoAng(23, ang(0, 90, 0))
+    znbHoloSolid(23)
+
+    holoCreate(24)
+    holoPos(24, E:toWorld(vec(-620, 737, 1001 - A)))
+    holoModel(24, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    holoAng(24, ang(0, 90, 0))
+    znbHoloSolid(24)
+
+    holoCreate(25)
+    holoPos(25, E:toWorld(vec(620, 737, 1001 - A)))
+    holoModel(25, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    holoAng(25, ang(0, 90, 0))
+    znbHoloSolid(25)
+
+    holoCreate(26)
+    holoPos(26, E:toWorld(vec(-620 + 250, 737, 1001 - A)))
+    holoModel(26, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    holoAng(26, ang(0, 90, 0))
+    znbHoloSolid(26)
+
+    holoCreate(27)
+    holoPos(27, E:toWorld(vec(620 - 250, 737, 1001 - A)))
+    holoModel(27, "models/props_foliage/ah_domestic_hedge256_mid.mdl")
+    holoAng(27, ang(0, 90, 0))
+    znbHoloSolid(27)
+
+    holoCreate(28)
+    holoPos(28, E:toWorld(vec(370 - ceil(random(50)), ceil(random(50)), 1320 - A)))
+    holoModel(28, "models/props_foliage/ah_ash_tree_lg.mdl")
+    holoAng(28, ang(0, ceil(random(180)), 0))
+    znbHoloSolid(28)
+
+    holoCreate(29)
+    holoPos(29, E:toWorld(vec(370 - ceil(random(50)), 470 - ceil(random(50)), 1320 - A)))
+    holoModel(29, "models/props_foliage/ah_ash_tree_lg.mdl")
+    holoAng(29, ang(0, ceil(random(180)), 0))
+    znbHoloSolid(29)
+
+    holoCreate(30)
+    holoPos(30, E:toWorld(vec(370 - ceil(random(50)), -470 + ceil(random(50)), 1320 - A)))
+    holoModel(30, "models/props_foliage/ah_ash_tree_lg.mdl")
+    holoAng(30, ang(0, ceil(random(180)), 0))
+    znbHoloSolid(30)
+
+    holoCreate(31)
+    holoPos(31, E:toWorld(vec(-370 + ceil(random(50)), ceil(random(50)), 1320 - A)))
+    holoModel(31, "models/props_foliage/ah_ash_tree_lg.mdl")
+    holoAng(31, ang(0, ceil(random(180)), 0))
+    znbHoloSolid(31)
+
+    holoCreate(32)
+    holoPos(32, E:toWorld(vec(-370 + ceil(random(50)), 470 - ceil(random(50)), 1320 - A)))
+    holoModel(32, "models/props_foliage/ah_ash_tree_lg.mdl")
+    holoAng(32, ang(0, ceil(random(180)), 0))
+    znbHoloSolid(32)
+
+    holoCreate(33)
+    holoPos(33, E:toWorld(vec(-370 + ceil(random(50)), -470 + ceil(random(50)), 1320 - A)))
+    holoModel(33, "models/props_foliage/ah_ash_tree_lg.mdl")
+    holoAng(33, ang(0, ceil(random(180)), 0))
+    znbHoloSolid(33)
+
+    holoCreate(34)
+    holoPos(34, E:toWorld(vec(-100, 0, 1020 - A)))
+    holoModel(34, "models/props_trainstation/bench_indoor001a.mdl")
+    holoMaterial(34, "models/shiny")
+    holoColor(34, vec(190, 150, 50))
+    znbHoloSolid(34)
+
+    holoCreate(35)
+    holoPos(35, E:toWorld(vec(-100, 300, 1020 - A)))
+    holoModel(35, "models/props_trainstation/bench_indoor001a.mdl")
+    holoMaterial(35, "models/shiny")
+    holoColor(35, vec(190, 150, 50))
+    znbHoloSolid(35)
+
+    holoCreate(36)
+    holoPos(36, E:toWorld(vec(-100, -300, 1020 - A)))
+    holoModel(36, "models/props_trainstation/bench_indoor001a.mdl")
+    holoMaterial(36, "models/shiny")
+    holoColor(36, vec(190, 150, 50))
+    znbHoloSolid(36)
+
+    holoCreate(37)
+    holoPos(37, E:toWorld(vec(100, 0, 1020 - A)))
+    holoModel(37, "models/props_trainstation/bench_indoor001a.mdl")
+    holoAng(37, ang(0, 180, 0))
+    holoMaterial(37, "models/shiny")
+    holoColor(37, vec(190, 150, 50))
+    znbHoloSolid(37)
+
+    holoCreate(38)
+    holoPos(38, E:toWorld(vec(100, 300, 1020 - A)))
+    holoModel(38, "models/props_trainstation/bench_indoor001a.mdl")
+    holoAng(38, ang(0, 180, 0))
+    holoMaterial(38, "models/shiny")
+    holoColor(38, vec(190, 150, 50))
+    znbHoloSolid(38)
+
+    holoCreate(39)
+    holoPos(39, E:toWorld(vec(100, -300, 1020 - A)))
+    holoModel(39, "models/props_trainstation/bench_indoor001a.mdl")
+    holoAng(39, ang(0, 180, 0))
+    holoMaterial(39, "models/shiny")
+    holoColor(39, vec(190, 150, 50))
+    znbHoloSolid(39)
+
+    holoCreate(40)
+    holoPos(40, E:toWorld(vec(530, 500, 1005 - A)))
+    holoModel(40, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(40, ang(0, ceil(random(180)), 0))
+
+    holoCreate(41)
+    holoPos(41, E:toWorld(vec(530, 200, 1005 - A)))
+    holoModel(41, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(41, ang(0, ceil(random(180)), 0))
+
+    holoCreate(42)
+    holoPos(42, E:toWorld(vec(530, -200, 1005 - A)))
+    holoModel(42, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(42, ang(0, ceil(random(180)), 0))
+
+    holoCreate(43)
+    holoPos(43, E:toWorld(vec(530, -500, 1005 - A)))
+    holoModel(43, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(43, ang(0, ceil(random(180)), 0))
+
+    holoCreate(44)
+    holoPos(44, E:toWorld(vec(350, 500, 1005 - A)))
+    holoModel(44, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(44, ang(0, ceil(random(180)), 0))
+
+    holoCreate(45)
+    holoPos(45, E:toWorld(vec(350, 200, 1005 - A)))
+    holoModel(45, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(45, ang(0, ceil(random(180)), 0))
+
+    holoCreate(46)
+    holoPos(46, E:toWorld(vec(350, -200, 1005 - A)))
+    holoModel(46, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(46, ang(0, ceil(random(180)), 0))
+
+    holoCreate(47)
+    holoPos(47, E:toWorld(vec(350, -500, 1005 - A)))
+    holoModel(47, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(47, ang(0, ceil(random(180)), 0))
+
+    holoCreate(48)
+    holoPos(48, E:toWorld(vec(-530, 500, 1005 - A)))
+    holoModel(48, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(48, ang(0, ceil(random(180)), 0))
+
+    holoCreate(49)
+    holoPos(49, E:toWorld(vec(-530, 200, 1005 - A)))
+    holoModel(49, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(49, ang(0, ceil(random(180)), 0))
+
+    holoCreate(50)
+    holoPos(50, E:toWorld(vec(-530, -200, 1005)))
+    holoModel(50, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(50, ang(0, ceil(random(180)), 0))
+
+    holoCreate(51)
+    holoPos(51, E:toWorld(vec(-530, -500, 1005 - A)))
+    holoModel(51, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(51, ang(0, ceil(random(180)), 0))
+
+    holoCreate(52)
+    holoPos(52, E:toWorld(vec(-350, 500, 1005 - A)))
+    holoModel(52, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(52, ang(0, ceil(random(180)), 0))
+
+    holoCreate(53)
+    holoPos(53, E:toWorld(vec(-350, 200, 1005 - A)))
+    holoModel(53, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(53, ang(0, ceil(random(180)), 0))
+
+    holoCreate(54)
+    holoPos(54, E:toWorld(vec(-350, -200, 1005 - A)))
+    holoModel(54, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(54, ang(0, ceil(random(180)), 0))
+
+    holoCreate(55)
+    holoPos(55, E:toWorld(vec(-350, -500, 1005 - A)))
+    holoModel(55, "models/props_foliage/ah_grass_512x512_001.mdl")
+    holoAng(55, ang(0, ceil(random(180)), 0))
+
+    for(I = 56, 66){
+        holoCreate(I)
+        holoPos(I, E:toWorld(vec(ceil(random(720)), ceil(random(720)), 1000 - A)))
+        holoModel(I, "models/props_foliage/r_detailprop3.mdl")
+        holoAng(I, ang(0, ceil(random(180)), 0))
+        holoScale(I, vec(2))
+    }
+
+    for(I = 66, 76){
+        holoCreate(I)
+        holoPos(I, E:toWorld(vec(ceil(random(-720)), ceil(random(-720)), 1000 - A)))
+        holoModel(I, "models/props_foliage/r_detailprop3.mdl")
+        holoAng(I, ang(0, ceil(random(180)), 0))
+        holoScale(I, vec(2))
+    }
+
+    for(I = 76, 86){
+        holoCreate(I)
+        holoPos(I, E:toWorld(vec(ceil(random(720)), ceil(random(-720)), 1000 - A)))
+        holoModel(I, "models/props_foliage/r_detailprop3.mdl")
+        holoAng(I, ang(0, ceil(random(180)), 0))
+        holoScale(I, vec(2))
+    }
+
+    for(I = 86, 96){
+        holoCreate(I)
+        holoPos(I, E:toWorld(vec(ceil(random(-720)), ceil(random(720)), 1000 - A)))
+        holoModel(I, "models/props_foliage/r_detailprop3.mdl")
+        holoAng(I, ang(0, ceil(random(180)), 0))
+        holoScale(I, vec(2))
+    }
+}

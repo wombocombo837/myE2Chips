@@ -1,0 +1,142 @@
+@name SafeZone byShelest
+@persist [P1 P2]:entity [Pos1 Pos2]:vector Excludes:array I
+
+interval(100)
+
+if(first()){  
+    noDuplications()
+    
+    E = entity()
+    O = owner()  
+    
+    Excludes = array(
+        O 
+        #findPlayerByName("Revy"),
+        #findPlayerByName("Alert_"),
+        #findPlayerByName("Solyanka"),
+        #findPlayerByName("{Tarantyl}"),
+        #findPlayerByName("WoTaK"),
+        #findPlayerByName("Jinyer"),
+        #findPlayerByName("halo"),
+        #findPlayerByName("0fuckthesystem0"),
+    )
+    
+    P1 = propSpawn("models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl", E:toWorld(vec(0)), E:toWorld(ang(0)), 1)
+    P2 = propSpawn("models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl", E:toWorld(vec(10, 10, 10)), E:toWorld(ang(0)), 1)
+    
+    holoCreate(1, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "models/props_phx/construct/plastic/plastic_panel8x8.mdl")
+    holoCreate(2, E:toWorld(vec(0)), vec(1), E:toWorld(ang(90, 0, 0)), vec(255), "models/props_phx/construct/plastic/plastic_panel8x8.mdl")
+    holoCreate(3, E:toWorld(vec(0)), vec(1), E:toWorld(ang(90, 0, 0)), vec(255), "models/props_phx/construct/plastic/plastic_panel8x8.mdl")
+    holoCreate(4, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0, 0, 90)), vec(255), "models/props_phx/construct/plastic/plastic_panel8x8.mdl")
+    holoCreate(5, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0, 0, 90)), vec(255), "models/props_phx/construct/plastic/plastic_panel8x8.mdl")
+    holoCreate(6, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(7, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(8, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0, 90, 0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(9, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0, 90, 0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(10, E:toWorld(vec(0)), vec(1), E:toWorld(ang(90, 0, 0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(11, E:toWorld(vec(0)), vec(1), E:toWorld(ang(90, 0, 0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(12, E:toWorld(vec(0)), vec(1), E:toWorld(ang(90, 0, 0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(13, E:toWorld(vec(0)), vec(1), E:toWorld(ang(90, 0, 0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(14, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(15, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(16, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0, 90, 0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+    holoCreate(17, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0, 90, 0)), vec(255), "models/sprops/rectangles/size_1/rect_3x480x3.mdl")
+
+    
+    for(I = 1, 5){
+        holoMaterial(I, "phoenix_storms/glass")#models/shiny
+        holoColor(I, vec(0))
+    }
+    
+    for(I = 6, 17){
+        holoMaterial(I, "models/shiny")
+    }
+    
+    for(I = 1, 17){
+        holoDisableShading(I, 1)
+        findExcludeEntity(holoEntity(I))
+    }
+    
+    findExcludeClass("trigger_soundscape")
+    findExcludeClass("manipulate_flex")
+    
+    foreach(K, Ply:entity = Excludes){
+        findExcludePlayerProps(Ply)
+        findExcludeEntity(Ply)
+    }    
+}
+
+if(((P1 & changed(P1:pos())) | (P2 & changed(P2:pos()))) | first()){
+    
+    Pos1 = P1:pos()
+    Pos2 = P2:pos()
+    
+    local Size = Pos2 - Pos1
+    local Centr = Pos1 + (Pos2 - Pos1) /2
+    
+    local Xs = Size:x()
+    local Ys = Size:y()
+    local Zs = Size:z()
+    
+    local C = 4.55
+    local C2 = 5
+    
+    holoPos(1, Centr + vec(0, 0, Zs/2))
+    holoScaleUnits(1, vec(Xs, Ys, 1))
+    holoPos(2, Centr + vec(Xs/2, 0, 0))
+    holoScaleUnits(2, vec(Zs, Ys, 1))
+    holoPos(3, Centr - vec(Xs/2, 0, 0))
+    holoScaleUnits(3, vec(Zs, Ys, 1))
+    holoPos(4, Centr + vec(0, Ys/2, 0))
+    holoScaleUnits(4, vec(Xs, Zs, 1))    
+    holoPos(5, Centr - vec(0, Ys/2, 0))
+    holoScaleUnits(5, vec(Xs, Zs, 1))
+    holoPos(6, Centr + vec(0, Ys/2, Zs/2))
+    holoScaleUnits(6, vec(Xs + C, C2, C2))
+    holoPos(7, Centr + vec(0, -Ys/2, Zs/2))
+    holoScaleUnits(7, vec(Xs + C, C2, C2))
+    holoPos(8, Centr + vec(Xs/2, 0, Zs/2))
+    holoScaleUnits(8, vec(Ys + C, C2, C2))
+    holoPos(9, Centr + vec(-Xs/2, 0, Zs/2))
+    holoScaleUnits(9, vec(Ys + C, C2, C2))
+    holoPos(10, Centr + vec(Xs/2, Ys/2, 0))
+    holoScaleUnits(10, vec(Zs + C, C2, C2))
+    holoPos(11, Centr + vec(-Xs/2, Ys/2, 0))
+    holoScaleUnits(11, vec(Zs + C, C2, C2))
+    holoPos(12, Centr + vec(Xs/2, -Ys/2, 0))
+    holoScaleUnits(12, vec(Zs + C, C2, C2))
+    holoPos(13, Centr + vec(-Xs/2, -Ys/2, 0))
+    holoScaleUnits(13, vec(Zs + C, C2, C2))
+    holoPos(14, Centr + vec(0, Ys/2, -Zs/2))
+    holoScaleUnits(14, vec(Xs + C, C2, C2))
+    holoPos(15, Centr + vec(0, -Ys/2, -Zs/2))
+    holoScaleUnits(15, vec(Xs + C, C2, C2))
+    holoPos(16, Centr + vec(Xs/2, 0, -Zs/2))
+    holoScaleUnits(16, vec(Ys + C, C2, C2))
+    holoPos(17, Centr + vec(-Xs/2, 0, -Zs/2))
+    holoScaleUnits(17, vec(Ys + C, C2, C2))
+
+}
+
+findInBox(Pos1, Pos2)
+Ents = findToArray()
+
+I = (I + 1) % (Ents:count() + 1)
+
+Ent = Ents:entity(I)
+    
+
+if(Ent:isPlayer()){
+    # Ent:znbSetGodMode(0)
+    Ent:takeDamage(99999999, Ent, noentity())
+}
+else{
+    if(Ent:type() == "rpg_missile"){
+        # znbPropSpawn("models/hunter/blocks/cube075x075x075.mdl", Ent:pos(), ang(), 1)
+        propSpawn("models/hunter/blocks/cube075x075x075.mdl", Ent:pos(), ang(), 1)
+    }
+    else{
+        Ent:remove() 
+    }
+}
+

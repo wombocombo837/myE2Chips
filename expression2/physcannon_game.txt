@@ -1,0 +1,104 @@
+@name PhyscannonGAME byShelest
+@persist [E O]:entity [Players]:table
+
+interval(10)
+
+if (first()) {
+    # noDuplications()
+    runOnChat(1)
+
+    O = owner()
+}
+
+function chatPrint(Pl: entity, STR: string) {
+    for (I = 1, Players:count()) {
+        local Ply = Players[I, array]:entity(1)
+        Ply:znbAddChat(vec(200, 200, 200), Pl:name(), vec(255, 0, 0), STR)
+    }
+}
+
+if (chatClk()) {
+    local Say = lastSaid():lower()
+    local Ply = lastSpoke()
+
+    if (Say == "!join" | Say == "!enter") {
+        Ply:hideChat(1)
+        local InGame = 0
+
+        for (I = 1, Players:count()) {
+            local Pl = Players[I, array]:entity(1)
+
+            if (Pl == Ply) {
+                Ply:znbAddChat(vec(200, 200, 200), Ply:name(), vec(255, 0, 0), " вы уже участвуете в игре.")
+                InGame = 1
+                break
+            }
+        }
+
+        if (!InGame) {            
+            local Col = hsv2rgb(360 / (Players:count() + 1), 1, 1)
+            local Prop = propSpawn("models/props_junk/sawblade001a.mdl", Ply:toWorld(vec(100, 0, 50)), 0)
+            
+            Prop:setTrails(10, 5, 3, "trails/laser", Col, 255)
+            Prop:setColor(Col)
+            Prop:setMass(200)
+            Prop:setMaterial("models/wireframe")
+            Prop:propFreeze(0)
+            noCollideAll(Prop, 0)
+
+            Players:pushArray(array(Ply, Prop))
+
+            chatPrint(Ply, " вошел в игру. Игроков( " + Players:count() + " )")
+        }
+    }
+
+    if (Say == "!leave" | Say == "!quit" | Say == "!exit") {
+        Ply:hideChat(1)
+
+        for (I = 1, Players:count()) {
+            local Pl = Players[I, array]:entity(1)
+
+            if (Pl == Ply) {
+                Players[I, array]:entity(2):remove()
+                Players:remove(I)
+                chatPrint(Ply, " вышел из игры. Игроков( " + Players:count() + " )")
+                Ply:znbAddChat(vec(255, 0, 0), " Вы вышли из игры.")
+                break
+            }
+        }
+    }
+
+    if (Say == "!debug") {
+
+        Ply:hideChat(1)
+
+        for (I = 1, Players:count()) {
+
+            local Pl = Players[I, array]:entity(1)
+
+            if (Pl == Ply) {
+                Players[I, array]:entity(2):setPos(Ply:toWorld(vec(100, 0, 50)))
+                break
+            }
+        }
+    }
+}
+
+for (I = 1, Players:count()) {
+
+    local Ply = Players[I, array]:entity(1)
+    local Prop = Players[I, array]:entity(2)
+
+    if (Ply:znbHasGodMode()) {
+        Ply:znbSetGodMode(0)
+    }
+
+    if (Ply:isAlive() & Ply:weapon():type() != "weapon_physcannon") {
+        Ply:giveWeapon("weapon_physcannon")
+        Ply:znbSelectWeapon("weapon_physcannon")
+    }
+
+    if (Ply:isAlive() & Ply:keyAttack2()) {
+        Prop:applyForce(((((Ply:toWorld(vec(200, 0, 50))) - Prop:pos()) * 10) - Prop:vel()) * Prop:mass())
+    }
+}

@@ -1,0 +1,118 @@
+@name Seraph of the End / Shikama Douji byShelest
+@persist [E O Base]:entity Just A
+
+interval(10)
+
+if(first()){
+    # noDuplications()
+    
+    E = entity()
+    O = owner()
+    
+    O:plyRunSpeed(1000)
+    
+    Base = holoCreate(0, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "")
+    holoAlpha(0, 0)
+    
+    meshCreate(0, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/Cosa_2.obj")
+    meshSetMaterial(0, "phoenix_storms/pack2/redlight")
+    meshSetScale(0, vec(2.5))
+    meshParent(0, entity())
+    
+    meshCreate(1, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/Cosa_1.obj")
+    meshSetMaterial(1, "models/props_combine/metal_combinebridge001")
+    meshSetScale(1, vec(2.5))
+    meshParent(1, entity())    
+    
+    meshSetPos(0, Base:toWorld(vec(0, 0, 50)))
+    meshSetAng(0, Base:toWorld(ang(90, 180, 0)))
+    meshParent(0, Base)
+
+    meshSetPos(1, Base:toWorld(vec(0,0,50)))
+    meshSetAng(1, Base:toWorld(ang(90, 180, 0)))
+    meshParent(1, Base)    
+
+}
+
+if(changed(!Just) & Just == 0){
+    holoPos(0, O:attachmentPos("chest"))
+    holoAng(0, O:attachmentAng("chest"))
+    holoPos(0, holoEntity(0):toWorld(vec(-6.5, 0, -10)))
+    holoAng(0, holoEntity(0):toWorld(ang(0, 0, 35)))
+    holoParentAttachment(0, O, "chest")
+}
+
+if(O:weapon():type() == "weapon_crowbar"){
+    Just = 1
+    O:weapon():setAlpha(0)
+}
+else{
+    Just = 0
+}
+
+if(O:keyUse()){
+    Just = 2
+}
+
+if(O:keyUse() & O:keyAttack2()){
+    Just = 3
+}
+    
+if(changed(Just) & Just == 1){
+    holoPos(0, O:attachmentPos("anim_attachment_rh"))
+    holoAng(0, O:attachmentAng("anim_attachment_rh"))
+    holoPos(0, holoEntity(0):toWorld(vec(0.5, 3.5, 0)))
+    holoAng(0, holoEntity(0):toWorld(ang(0, -10, 0)))
+    holoParentAttachment(0, O, "anim_attachment_rh")
+}
+
+if(Just == 2){
+    holoUnparent(0)
+    
+    A = A - 30
+    
+    holoAng(0, ang(0, 180, A) + O:angles())
+    holoPos(0, O:toWorld(vec(40, 0, 80)))
+    local Color = randint(0, 1) ? vec(15) : vec(255, 0, 0)
+    particle(1, 50, 10, "particle/smokesprites_000" + randint(1, 9), Color, Base:toWorld(vec(0, 0, 100)), -Base:up() * 50, 0, 0, 100, 0)    
+}
+
+if(Just == 3){    
+    A = A - 30
+    
+    holoPos(0, O:attachmentPos("anim_attachment_rh"))
+    holoPos(0, holoEntity(0):toWorld(vec(0.5, 3.5, 0)))
+    holoAng(0, O:attachmentAng("anim_attachment_rh") + ang(0, -10, 0 + A))
+    holoParentAttachment(0, O, "anim_attachment_rh")
+
+    local Color = randint(0, 1) ? vec(15) : vec(255, 0, 0)
+    
+    particle(5, 50, 10, "particle/smokesprites_000" + randint(1, 9), Color, Base:toWorld(vec(0, 0, 100)), -Base:up() * 50, 0, 0, 100, 0)
+}
+
+if(O:keyReload()){
+    A = (A + 10) % 360
+    local Color = randint(0, 1) ? vec(15) : vec(255, 0, 0)
+    particle(5, 50, 10, "particle/smokesprites_000" + randint(1, 9), Color, O:toWorld(vec(sin(A), cos(A), 0) * 300 + vec(0, 0, 10)), -O:up()*50, 0, 0, 100, 0)    
+    
+    Plys = players()
+    
+    for(I = 0, Plys:count()){
+        local Ply = Plys[I, entity]   
+     
+       if(Ply != O & O:pos():distance(Ply:pos()) < 300){
+            Ply:takeDamage(10)
+        }
+    }
+}
+
+if(Just & O:keyAttack1() & O:aimEntity()){
+    local Aim = O:aimEntity()
+    
+    if(Aim:pos():distance(O:pos()) < 300){
+        Aim:setVel((-(O:pos()-Aim:pos())) * 1 + vec(0, 0, 100))
+        Aim:takeDamage(150)
+        O:soundPlay(1, 1, "physics/body/body_medium_impact_hard"+randint(1, 5)+".wav")
+    }
+}
+

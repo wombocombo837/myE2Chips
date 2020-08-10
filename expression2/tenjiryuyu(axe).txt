@@ -1,0 +1,68 @@
+@name Seraph of the End / Tenjiryuyu byShelest
+@persist [E O Base]:entity Just
+
+interval(100)
+
+if(first()){    
+    noDuplications()
+    
+    E = entity()
+    O = owner()
+    
+    Base = holoCreate(0, E:toWorld(vec(0)), vec(1), E:toWorld(ang(0)), vec(255), "")
+    holoAlpha(0,0)
+    
+    meshCreate(1, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/Axe_2.obj")
+    meshSetMaterial(1, "phoenix_storms/pack2/redlight")
+    meshSetScale(1, vec(2.5))
+    meshParent(1, entity())
+    
+    meshCreate(2, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/Axe_1.obj")
+    meshSetMaterial(2, "models/props_combine/metal_combinebridge001")
+    meshSetScale(2, vec(2.5))
+    meshParent(2, entity())    
+    
+    meshSetPos(1, Base:toWorld(vec(0, 0, 30)))
+    meshSetAng(1, Base:toWorld(ang(90, 180, 0)))
+    meshParent(1, Base)
+
+    meshSetPos(2, Base:toWorld(vec(0, 0, 30)))
+    meshSetAng(2, Base:toWorld(ang(90, 180, 0)))
+    meshParent(2, Base)    
+
+}
+
+if(changed(!Just) & !Just){
+    holoPos(0, O:attachmentPos("chest"))
+    holoAng(0, O:attachmentAng("chest"))
+    holoPos(0, holoEntity(0):toWorld(vec(-6.5, 0, -10)))
+    holoAng(0, holoEntity(0):toWorld(ang(0, 0, 35)))
+    holoParentAttachment(0, O, "chest")
+}
+
+if(O:weapon():type() == "weapon_crowbar"){
+    Just = 1
+    O:weapon():setAlpha(0)
+}
+else{
+    Just = 0
+}
+    
+if(changed(Just) & Just){     
+    holoPos(0,O:attachmentPos("anim_attachment_rh"))
+    holoAng(0,O:attachmentAng("anim_attachment_rh"))
+    holoPos(0,holoEntity(0):toWorld(vec(1, 3.5, 0)))
+    holoAng(0,holoEntity(0):toWorld(ang(0, -10, 0)))
+    holoParentAttachment(0, O, "anim_attachment_rh")
+}
+
+
+if(Just & O:keyAttack1() & O:aimEntity()){
+    local Aim = O:aimEntity()
+    
+    if(Aim:pos():distance(O:pos()) < 200){
+        Aim:takeDamage(150)
+        O:soundPlay(1, 1, "physics/body/body_medium_impact_hard"+randint(1, 5) + ".wav")
+    }
+}
+

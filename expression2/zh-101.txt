@@ -1,0 +1,181 @@
+@name ZH-101
+@persist [E O B F1 F2 F3 F4 ZY XY X P Act PROP]:entity R R2 Load 
+
+interval(10)
+
+if(first()){
+    noDuplications()
+    
+    E = entity()
+    O = owner()
+    
+    R = 20
+    
+    B = holoCreate(0, E:toWorld(vec(0, 0, 65)), vec(1), E:toWorld(ang(0)), vec(0, 255, 0), "")
+    holoParent(0, E)
+    
+    meshCreate(1, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_Z-white.obj")
+    meshSetScale(1, vec(30))
+    meshSetPos(1, B:toWorld(vec(0)))
+    meshParent(1, B)
+    meshSetMaterial(1, "models/shiny")
+    
+    F1 = holoCreate(1, B:toWorld(vec(48.52, 48.52, 0)), vec(1), B:toWorld(ang(R, 45, 0)), vec(0, 255, 0), "")
+    holoParent(1, B)
+    
+    meshCreate(2, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_foot.obj")
+    meshSetAng(2, F1:toWorld(ang(0, -45, 0)))
+    meshSetScale(2, vec(30))
+    meshSetPos(2, F1:toWorld(vec(0)))
+    meshParent(2, F1)
+    meshSetMaterial(2, "models/shiny")
+
+    F2 = holoCreate(2, B:toWorld(vec(-48.52, 48.52, 0)), vec(1), B:toWorld(ang(0, 45, -R)), vec(0, 255, 0), "")
+    holoParent(2, B)
+    
+    meshCreate(3, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_foot.obj")
+    meshSetAng(3, F2:toWorld(ang(0, 45, 0)))
+    meshSetScale(3, vec(30))
+    meshSetPos(3, F2:toWorld(vec(0)))    
+    meshParent(3, F2)
+    meshSetMaterial(3, "models/shiny")
+
+    F3 = holoCreate(3, B:toWorld(vec(48.52, -48.52, 0)), vec(1), B:toWorld(ang(0, 45, R)), vec(0, 255, 0), "")
+    holoParent(3, B)
+    
+    meshCreate(4, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_foot.obj")
+    meshSetAng(4, F3:toWorld(ang(0, 180 + 45, 0)))
+    meshSetScale(4, vec(30))
+    meshSetPos(4, F3:toWorld(vec(0)))    
+    meshParent(4, F3)
+    meshSetMaterial(4, "models/shiny")
+    
+    F4 = holoCreate(4, B:toWorld(vec(-48.52, -48.52, 0)), vec(1), B:toWorld(ang(-R, 45, 0)), vec(0, 255, 0), "")
+    holoParent(4, B)
+    
+    meshCreate(5, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_foot.obj")
+    meshSetAng(5, F4:toWorld(ang(0, 180 - 45, 0)))
+    meshSetScale(5, vec(30))
+    meshSetPos(5, F4:toWorld(vec(0)))    
+    meshParent(5, F4)
+    meshSetMaterial(5, "models/shiny")
+    
+    ZY = holoCreate(5, B:toWorld(vec(0, 0, -1)), vec(1), B:toWorld(ang(0, 0, 0)), vec(0, 255, 0), "")
+    holoParent(5, B)
+    
+    meshCreate(6, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_ZY-orange.obj")
+    meshSetAng(6, ZY:toWorld(ang(0, 0, 0)))
+    meshSetScale(6, vec(30))
+    meshSetPos(6, ZY:toWorld(vec(0)))    
+    meshParent(6, ZY)
+    meshSetMaterial(6, "phoenix_storms/pack2/redlight")
+    
+    meshCreate(7, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_ZY-white.obj")
+    meshSetAng(7, ZY:toWorld(ang(0, 0, 0)))
+    meshSetScale(7, vec(30))
+    meshSetPos(7, ZY:toWorld(vec(0)))    
+    meshParent(7, ZY)
+    meshSetMaterial(7, "models/shiny")
+    
+    XY = holoCreate(6, ZY:toWorld(vec(36.35, 0, 107.5)), vec(1), ZY:toWorld(ang(0, 0, 0)), vec(0, 255, 0), "")
+    holoParent(6, ZY)
+
+    meshCreate(8, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_XY-orange.obj")
+    meshSetAng(8, XY:toWorld(ang(0, 0, 0)))
+    meshSetScale(8, vec(30))
+    meshSetPos(8, XY:toWorld(vec(0)))    
+    meshParent(8, XY)
+    meshSetMaterial(8, "phoenix_storms/pack2/redlight")
+    
+    meshCreate(9, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_XY-white.obj")
+    meshSetAng(9, XY:toWorld(ang(0, 0, 0)))
+    meshSetScale(9, vec(30))
+    meshSetPos(9, XY:toWorld(vec(0)))    
+    meshParent(9, XY)
+    meshSetMaterial(9, "models/shiny")
+    
+    meshCreate(10, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_XY-yellow.obj")
+    meshSetAng(10, XY:toWorld(ang(0, 0, 0)))
+    meshSetScale(10, vec(30))
+    meshSetPos(10, XY:toWorld(vec(0)))    
+    meshParent(10, XY)
+    meshSetMaterial(10, "models/shiny")
+
+    X = holoCreate(7, XY:toWorld(vec(-36.35, 21.95, 0)), vec(1), XY:toWorld(ang(0, 0, 0)), vec(255, 0, 0), "")
+    holoParent(7, XY)
+    
+    meshCreate(11, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_X-orange.obj")
+    meshSetAng(11, X:toWorld(ang(0, 0, 0)))
+    meshSetScale(11, vec(30))
+    meshSetPos(11, X:toWorld(vec(0)))    
+    meshParent(11, X)
+    meshSetMaterial(11, "phoenix_storms/pack2/redlight")
+        
+    meshCreate(12, "https://raw.githubusercontent.com/SergeiShelest/myE2Chips/master/meshcore/ZH_X-white.obj")
+    meshSetAng(12, X:toWorld(ang(0, 0, 0)))
+    meshSetScale(12, vec(30))
+    meshSetPos(12, X:toWorld(vec(0)))    
+    meshParent(12, X)
+    meshSetMaterial(12, "models/shiny")
+
+    P = holoCreate(8, XY:toWorld(vec(-36.35, 320, 10)), vec(1), ang(0), vec(255), "")
+    holoParent(8, XY)
+
+    for(I = 0, 8){
+        holoAlpha(I, 0)    
+    }    
+    
+}
+
+if(O:keyUse()){
+    Act = O:aimEntity()
+    R = 0
+}
+if(Act){
+    local Ang = (Act:pos() - X:pos()):toAngle()
+    local Y = Ang:yaw() - 90
+    local Z = -Ang:pitch()
+    
+    holoAng(5, B:toWorld(ang(0, Y, 0)))
+    holoAng(6, ZY:toWorld(ang(0, 0, Z)))
+    holoAng(7, XY:toWorld(ang(R, 0, 0)))
+    
+    R = (R + 5) % 360
+    
+    if(R == 0 | R == 120 | R ==  240){
+        # PROP = znbPropSpawn("models/props_junk/propane_tank001a.mdl", P:pos(), P:angles(), 0)
+        PROP = propSpawn("models/props_junk/propane_tank001a.mdl", P:pos(), P:angles(), 0)
+        PROP:setMass(10000)
+        PROP:setKeyValue("ExplodeRadius", 800)
+        PROP:setKeyValue("ExplodeDamage", 100000)
+        PROP:setAlpha(0)
+        PROP:soundPlay(1, 0, "weapons/rpg/rocket1.wav", 1)
+        E:soundPlay(2, 1, "phx/explode00.wav")
+        soundPitch(1, 193)
+    }
+    #particle(0.1, 50, 50, "effects/ar2_altfire1", vec(255), PROP:toWorld(vec(0, 0, -27)), -PROP:up() * 70, 0, 0, 255, 0)
+    #PROP:setTrails(10,0,20,"trails/laser",vec(255),254)
+    PROP:applyForce((Act:pos()-PROP:pos())* 3000)
+    
+    if(PROP:pos():distance(Act:pos()) < 45){
+        PROP:propBreak()
+    }
+        
+}
+else{
+    R = (R + 5) % 360
+    R2 = (R2 + 1) % 360
+    
+    holoAng(5, B:toWorld(ang(0, R2, 0)))
+    holoAng(6, ZY:toWorld(ang(0, 0, 10* cos(R2))))
+}
+
+
+
+
+
+
+
+
+
+

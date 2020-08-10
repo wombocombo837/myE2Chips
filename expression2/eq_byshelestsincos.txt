@@ -1,0 +1,73 @@
+@name EQ_ByShelestSinCos
+@persist [E O B]:entity N A Light:array T Ang:angle R
+
+interval(100)
+
+if(first()){
+    # noDuplications()
+    
+    E = entity()
+    O = owner()
+    
+    A = 80
+    
+    B = holoCreate(0, E:toWorld(vec(0)), vec(0), E:toWorld(ang(0)), vec(0), "") 
+}
+
+timer("t", 350)
+
+if( clk("t") & holoCanCreate() & T < 360 ){    
+    T = T + 10
+    X = cos(T)
+    Y = sin(T)
+    
+    N++    
+
+    holoCreate(N, B:toWorld(vec(X * A, Y * A, 0)), vec(0.5, 0.5, 0.3), E:toWorld(ang(90, 90, 0)), vec(250), "models/segment.mdl")
+    holoDisableShading(N, 1)
+    holoParent(N, B)
+    holoAlpha(N, 100)
+
+    holoCreate(N + 36, B:toWorld(vec(X * A, Y * A, -0.05)), vec(0.7, 0.7, 0.5), E:toWorld(ang(90, 90, 0)), vec(50), "models/segment.mdl")
+    holoParent(N + 36, B)
+    holoMaterial(N + 36, "models/shiny")
+        
+    holoCreate(N + 36 * 2, B:toWorld(vec(X * A, Y * A, 0)), vec(60, 0.55, 0.35), E:toWorld(ang(90, 90, 0)), vec(0), "models/segment.mdl")
+    holoDisableShading(N+36*2,1)
+    holoParent(N + 36 * 2, B)
+    holoAlpha(N + 36 * 2, 100)
+    
+    holoCreate(N + 36 * 3, B:toWorld(vec(X * A, Y * A, 37)), vec(0.7, 0.7, 0.5), E:toWorld(ang(90, 90, 0)), vec(50), "models/segment.mdl")
+    holoParent(N + 36 * 3, B)
+    holoMaterial(N + 36 * 3, "models/shiny")
+    
+    Ang = N == 1 ? ang(0, 90, 0) : (holoEntity(N - 1):pos() - holoEntity(N):pos()):toAngle()
+    
+    holoAng(N, B:toWorld(Ang + ang(90, 90 + 5, 0)))
+    holoAng(N + 36, B:toWorld(Ang + ang(90, 90 + 5, 0)))
+    holoAng(N + 36 * 2, B:toWorld(Ang + ang(90, 90 + 5, 0)))
+    holoAng(N + 36 * 3, B:toWorld(Ang + ang(90, 90 + 5, 0)))
+
+    Light[N, entity] = holoEntity(N):setdLight(holoEntity(N):pos(),vec(255, 255, 255), 0, 300, 0)
+}
+
+if( changed( N == 36 ) & N == 36 ){
+    soundURLload(1, "http://online.radiorecord.ru:8102/dub_128", 1, 0, O)
+    print("Playing")      
+}
+
+if( N == 36 ){    
+    R = R + 5 % 360
+    
+    holoAng(0, O:angles() + ang(0, R, 0))
+    holoPos(0, O:pos()) 
+       
+    FFT = E:soundFFT(1)
+    
+    for( I = 1, 36 ){    
+        holoScale(I, vec(FFT:number(I) + 2, 0.5, 0.3))
+        holoColor(I, vec(255 - FFT:number(I) * 5, 0, 255))
+        
+        Light[I, entity]:setColor(vec(255 - FFT:number(I) * 5, 0, 255))
+    }
+}
