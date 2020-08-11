@@ -17,8 +17,23 @@ git clone https://github.com/SergeiShelest/myE2Chips.git
 mv myE2Chips/expression2 "путь к папке data"
 rm myE2Chips
 ```
+#
+#
+#
+#
+#
+#### Скриншоты
 
-
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/1.jpg)
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/2.jpg)
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/3.jpg)
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/4.jpg)
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/5.jpg)
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/6.jpg)
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/7.jpg)
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/8.jpg)
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/9.jpg)
+![img](https://github.com/SergeiShelest/myE2Chips/raw/master/images/10.jpg)
 
 [Github]:<https://github.com/VelaEurope/E2Power>
 [Steam]:<https://steamcommunity.com/sharedfiles/filedetails/?id=384561758>
